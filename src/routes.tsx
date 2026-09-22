@@ -7,6 +7,7 @@ const VendorUpload = lazy(() => import("@/pages/VendorUpload"));
 const CarrierBid = lazy(() => import("@/pages/CarrierBid"));
 const BundleDetails = lazy(() => import("@/pages/BundleDetails"));
 const PackingListPlanDetails = lazy(() => import("@/pages/PackingListPlanDetails"));
+const PackingListDetails = lazy(() => import("@/pages/PackingListDetails"));
 
 export const routes: RouteObject[] = [
   {
@@ -28,6 +29,10 @@ export const routes: RouteObject[] = [
       {
         path: "/packing-list-plan/:packingListPlanId",
         element: <PackingListPlanDetails />,
+      },
+      {
+        path: "/packing-list/:id",
+        element: <PackingListDetails />,
       },
       {
         path: "*",

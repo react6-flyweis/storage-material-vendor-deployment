@@ -4,6 +4,7 @@ import { uploadApi } from "./api/uploadApi";
 import { freightApi } from "./api/freightApi";
 import { bundleApi } from "./api/bundleApi";
 import { packingListPlanApi } from "./api/packingListPlanApi";
+import { packingListApi } from "./api/packingListApi";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     [freightApi.reducerPath]: freightApi.reducer,
     [bundleApi.reducerPath]: bundleApi.reducer,
     [packingListPlanApi.reducerPath]: packingListPlanApi.reducer,
+    [packingListApi.reducerPath]: packingListApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -20,6 +22,7 @@ export const store = configureStore({
       freightApi.middleware,
       bundleApi.middleware,
       packingListPlanApi.middleware,
+      packingListApi.middleware,
     ),
 });
 

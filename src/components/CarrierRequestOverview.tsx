@@ -210,7 +210,18 @@ export default function CarrierRequestOverview() {
                         <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-blue-50 text-blue-750 shrink-0">
                           {formatTruckType(pl.truckType)}
                         </span>
-                        {details.packingListPlan?._id ? (
+                        {pl._id ? (
+                          <a
+                            href={`/packing-list/${pl._id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-sm font-bold text-blue-600 hover:text-blue-800 hover:underline font-mono truncate"
+                            title="View Packing List Details"
+                          >
+                            {pl.packingListNo}
+                          </a>
+                        ) : details.packingListPlan?._id ? (
                           <a
                             href={`/packing-list-plan/${details.packingListPlan._id}`}
                             target="_blank"

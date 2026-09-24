@@ -6,7 +6,10 @@ import { RouterErrorFallback } from "@/components/ErrorBoundary";
 const VendorUpload = lazy(() => import("@/pages/VendorUpload"));
 const CarrierBid = lazy(() => import("@/pages/CarrierBid"));
 const BundleDetails = lazy(() => import("@/pages/BundleDetails"));
-const PackingListPlanDetails = lazy(() => import("@/pages/PackingListPlanDetails"));
+const PackingListPlanDetails = lazy(
+  () => import("@/pages/PackingListPlanDetails"),
+);
+const PayableInvoiceUpload = lazy(() => import("@/pages/PayableInvoiceUpload"));
 
 export const routes: RouteObject[] = [
   {
@@ -30,10 +33,13 @@ export const routes: RouteObject[] = [
         element: <PackingListPlanDetails />,
       },
       {
+        path: "/invoice-upload/:token",
+        element: <PayableInvoiceUpload />,
+      },
+      {
         path: "*",
         element: <NotFound />,
       },
     ],
   },
 ];
-

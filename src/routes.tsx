@@ -9,6 +9,7 @@ const BundleDetails = lazy(() => import("@/pages/BundleDetails"));
 const PackingListPlanDetails = lazy(
   () => import("@/pages/PackingListPlanDetails"),
 );
+const PackingListDetails = lazy(() => import("@/pages/PackingListDetails"));
 const PayableInvoiceUpload = lazy(() => import("@/pages/PayableInvoiceUpload"));
 
 export const routes: RouteObject[] = [
@@ -31,6 +32,10 @@ export const routes: RouteObject[] = [
       {
         path: "/packing-list-plan/:packingListPlanId",
         element: <PackingListPlanDetails />,
+      },
+      {
+        path: "/packing-list/:id",
+        element: <PackingListDetails />,
       },
       {
         path: "/invoice-upload/:token",

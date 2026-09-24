@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useGetPackingListPlanDetailsQuery, type Bundle } from "@/redux/api/packingListPlanApi";
 import { useTranslation } from "react-i18next";
 import {
@@ -7,7 +7,8 @@ import {
   Layers,
   Scale,
   Truck,
-  FileText
+  FileText,
+  ExternalLink,
 } from "lucide-react";
 import InvalidRequestView from "@/components/InvalidRequestView";
 import logo from "@/assets/logo.svg";
@@ -203,7 +204,15 @@ export default function PackingListPlanDetails() {
               <tbody className="divide-y divide-slate-100 text-sm text-slate-700">
                 {packingLists.map((pl) => (
                   <tr key={pl._id} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="px-6 py-4 font-mono font-bold text-slate-900">{pl.packingListNo}</td>
+                    <td className="px-6 py-4">
+                      <Link
+                        to={`/packing-list/${pl._id}`}
+                        className="font-mono font-bold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1.5"
+                      >
+                        <span>{pl.packingListNo}</span>
+                        <ExternalLink className="h-3 w-3 opacity-60" />
+                      </Link>
+                    </td>
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
                         {formatTruckType(pl.truckType)}
@@ -222,7 +231,13 @@ export default function PackingListPlanDetails() {
               <div key={pl._id} className="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 space-y-3">
                 <div className="flex justify-between items-start gap-2">
                   <div className="min-w-0">
-                    <span className="font-mono font-bold text-slate-900 text-sm sm:text-base break-all">{pl.packingListNo}</span>
+                    <Link
+                      to={`/packing-list/${pl._id}`}
+                      className="font-mono font-bold text-blue-600 hover:underline text-sm sm:text-base break-all inline-flex items-center gap-1"
+                    >
+                      <span>{pl.packingListNo}</span>
+                      <ExternalLink className="h-3 w-3 shrink-0" />
+                    </Link>
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 shrink-0">
                     {formatTruckType(pl.truckType)}
@@ -266,7 +281,15 @@ export default function PackingListPlanDetails() {
                   return (
                     <tr key={bundle._id} className="hover:bg-slate-50/50 transition-colors">
                       <td className="px-4 py-3 text-center font-bold text-slate-400">{bundle.loadSequence || "-"}</td>
-                      <td className="px-4 py-3 font-mono font-bold text-slate-900">{bundle.bundleNo}</td>
+                      <td className="px-4 py-3">
+                        <Link
+                          to={`/bundle/${bundle._id}`}
+                          className="font-mono font-bold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1.5"
+                        >
+                          <span>{bundle.bundleNo}</span>
+                          <ExternalLink className="h-3 w-3 opacity-60" />
+                        </Link>
+                      </td>
                       <td className="px-4 py-3 capitalize">
                         <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-100 text-slate-800 border border-slate-200">
                           {bundle.bundleType}
@@ -302,7 +325,13 @@ export default function PackingListPlanDetails() {
                   <div className="flex justify-between items-start gap-2">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md">{t("seq")} {bundle.loadSequence || "-"}</span>
-                      <span className="font-mono font-bold text-slate-900 text-sm">{bundle.bundleNo}</span>
+                      <Link
+                        to={`/bundle/${bundle._id}`}
+                        className="font-mono font-bold text-blue-600 hover:underline text-sm inline-flex items-center gap-1"
+                      >
+                        <span>{bundle.bundleNo}</span>
+                        <ExternalLink className="h-3 w-3" />
+                      </Link>
                     </div>
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide ${bundle.status === "assigned_to_truck"
                         ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
